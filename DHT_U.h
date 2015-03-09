@@ -35,7 +35,7 @@ public:
   class Temperature : public Adafruit_Sensor {
   public:
     Temperature(DHT_Unified* parent, int32_t id);
-    void getEvent(sensors_event_t* event);
+    bool getEvent(sensors_event_t* event);
     void getSensor(sensor_t* sensor);
 
   private:
@@ -47,7 +47,7 @@ public:
   class Humidity : public Adafruit_Sensor {
   public:
     Humidity(DHT_Unified* parent, int32_t id);
-    void getEvent(sensors_event_t* event);
+    bool getEvent(sensors_event_t* event);
     void getSensor(sensor_t* sensor);
 
   private:
