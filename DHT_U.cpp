@@ -75,7 +75,7 @@ DHT_Unified::Temperature::Temperature(DHT_Unified* parent, int32_t id):
   _id(id)
 {}
 
-void DHT_Unified::Temperature::getEvent(sensors_event_t* event) {
+bool DHT_Unified::Temperature::getEvent(sensors_event_t* event) {
   // Clear event definition.
   memset(event, 0, sizeof(sensors_event_t));
   // Populate sensor reading values.
@@ -84,6 +84,8 @@ void DHT_Unified::Temperature::getEvent(sensors_event_t* event) {
   event->type        = SENSOR_TYPE_AMBIENT_TEMPERATURE;
   event->timestamp   = millis();
   event->temperature = _parent->_dht.readTemperature();
+  
+  return true;
 }
 
 void DHT_Unified::Temperature::getSensor(sensor_t* sensor) {
@@ -127,7 +129,7 @@ DHT_Unified::Humidity::Humidity(DHT_Unified* parent, int32_t id):
   _id(id)
 {}
 
-void DHT_Unified::Humidity::getEvent(sensors_event_t* event) {
+bool DHT_Unified::Humidity::getEvent(sensors_event_t* event) {
   // Clear event definition.
   memset(event, 0, sizeof(sensors_event_t));
   // Populate sensor reading values.
@@ -136,6 +138,8 @@ void DHT_Unified::Humidity::getEvent(sensors_event_t* event) {
   event->type              = SENSOR_TYPE_RELATIVE_HUMIDITY;
   event->timestamp         = millis();
   event->relative_humidity = _parent->_dht.readHumidity();
+  
+  return true;
 }
 
 void DHT_Unified::Humidity::getSensor(sensor_t* sensor) {
